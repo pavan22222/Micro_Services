@@ -1,5 +1,7 @@
 package com.vrnda.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,7 @@ public class EmployeeRegistrationController {
 	
 	@GetMapping("/get/id/{name}")
 	public String getEmployee2(@PathVariable(required = false) Integer id,@PathVariable()String name) {
+		new ResponseEntity<String>("", HttpStatus.CREATED);
 		return  "getEmployee2 "+id+" "+name;
 	}
 	
