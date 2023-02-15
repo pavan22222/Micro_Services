@@ -8,10 +8,12 @@ public interface StudentService {
 	
 	List<Student> getStudentByCity(String cityName);
 	
-	Integer saveStudent(String id,String name,String city,Long pincode);
+	String saveStudent(Student st);
 	
 	List<Student> getStudensByPagination(Integer startIndex,Integer lastIndex);
 	
 	Integer fetchCountOfStudents();
+	
+	Student getStudentById(String stduentId);
 
 }

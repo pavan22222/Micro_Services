@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.infinite.beans.Frontend">
+		<property name="backend" ref="backend"></property>
+	</bean>
+
+	<bean id="backend" class="com.infinite.beans.Backend">	
+		<constructor-arg name="frontend" ref="com.infinite.beans.Frontend"></constructor-arg>
+	</bean>
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.infinite.beans.WishMessageGenerator">
+		<property name="date" ref="date"></property>
+		<constructor-arg name="date" ref="date1"></constructor-arg>
+	</bean>
+
+	<bean id="date" class="java.util.Date">
+		
+	</bean>
+	
+	<bean id="date1" class="java.util.Date">	
+		<property name="year" value="120"></property>
+		<property name="month" value="10"></property>
+		<property name="date" value="12"></property>
+	
+	</bean>
+</beans>

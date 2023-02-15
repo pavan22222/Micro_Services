@@ -39,6 +39,8 @@ public class Student implements Serializable{
 	private String name;
 	@Column
 	private String city;
+	private String email;
+	private Long phoneNumber;
 	private Long pincode;
 	private Float fee;
 	private LocalDateTime doj;
@@ -103,8 +105,24 @@ public class Student implements Serializable{
 		return fee;
 	}
 
-	public void setSFee(Float fee) {
+	public void setFee(Float fee) {
 		this.fee = fee;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	
 

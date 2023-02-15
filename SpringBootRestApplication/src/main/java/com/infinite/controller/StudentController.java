@@ -1,16 +1,15 @@
 package com.infinite.controller;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.infinite.entity.Student;
 import com.infinite.service.StudentService;
 
@@ -37,6 +37,11 @@ public class StudentController {
 	String json;
 	
 	public String getDriverClassName() {
+		new Date().compareTo(null);
+		Integer[] array=new Integer[] {12,12};
+		new String().chars().mapToObj(Character[]::new);
+		int[] a=Arrays.stream(array).mapToInt(Integer::valueOf).toArray();
+		Arrays.stream(a).boxed().toArray(Integer[]::new);
 		return driverClassName;
 	}
 
@@ -95,10 +100,9 @@ public class StudentController {
 	}
 	
 	@RequestMapping(path ="/saveStudent",method = RequestMethod.POST,produces = "application/json",consumes = "*/*")
-	public ResponseEntity<Integer> saveStudent(@RequestBody(required = true) Student student) {
+	public ResponseEntity<String> saveStudent(@RequestBody(required = true) Student student) {
 		System.out.println(driverClassName+url+username+password+json);
-		return new ResponseEntity<Integer>(studentService.saveStudent(student.getId(), student.getName(), 
-				student.getCity(), student.getPincode()),HttpStatus.OK);
+		return new ResponseEntity<String>(studentService.saveStudent(student),HttpStatus.OK);
 	}
 	
 	@DeleteMapping(path = "/requestParams")
@@ -128,6 +132,11 @@ public class StudentController {
 	@RequestMapping(path="/getCount",method = RequestMethod.GET)
 	public Integer getCount(){
 		return studentService.fetchCountOfStudents();
+	}
+	
+	@RequestMapping(path ="/getStudentById",method = RequestMethod.GET)
+	public Student fetchStudentByCity(@RequestParam(required = true) String studentId) {	 
+		return studentService.getStudentById(studentId);
 	}
 	
 	

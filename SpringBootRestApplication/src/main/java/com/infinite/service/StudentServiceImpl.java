@@ -30,10 +30,10 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	@Transactional(rollbackOn = {IllegalArgumentException.class})
-	public Integer saveStudent(String id, String name, String city, Long pincode) {
+	public String saveStudent(Student st) {
 		Session session = entityManager.unwrap(Session.class);
 		Session session1 = (Session) entityManager.getDelegate();		
-		return studentRepository.saveStudent(id, name, city, pincode);
+		return entityManager.merge(st).getId();
 	}
 	
 	@Override
@@ -51,6 +51,13 @@ public class StudentServiceImpl implements StudentService {
 		System.out.println(list);
 		return (Integer) list.get(0);*/
 		return (Integer)query.getSingleResult();
+	}
+	
+	@Override
+	public Student getStudentById(String stduentId) {
+		Query query=entityManager.createQuery("select st from Student st where st.id=:id");
+		query.setParameter("id", stduentId);
+		return (Student) query.getSingleResult();
 	}
 
 }
